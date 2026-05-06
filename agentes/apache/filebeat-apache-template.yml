@@ -1,0 +1,18 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/httpd/access_log
+    - /var/log/httpd/error_log
+  fields:
+    servidor: NOMBRE_SERVIDOR
+    servicio: apache
+    empresa: comteco
+
+output.kafka:
+  hosts: ["IP_KAFKA:29092"]
+  topic: "comteco-logs"
+  required_acks: 1
+  compression: gzip
+
+logging.level: info

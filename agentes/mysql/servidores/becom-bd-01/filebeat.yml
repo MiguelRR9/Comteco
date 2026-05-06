@@ -1,0 +1,17 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/mysqld.log
+  fields:
+    servidor: becom-bd-01
+    servicio: mysql
+    empresa: comteco
+
+output.kafka:
+  hosts: ["192.9.220.118:29092"]
+  topic: "comteco-logs"
+  required_acks: 1
+  compression: gzip
+
+logging.level: info

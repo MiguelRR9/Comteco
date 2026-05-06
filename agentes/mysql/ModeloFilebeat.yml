@@ -1,0 +1,17 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/mysqld.log
+  fields:
+    servidor: NOMBRE_SERVIDOR
+    servicio: mysql
+    empresa: comteco
+
+output.kafka:
+  hosts: ["IP_KAFKA:29092"]
+  topic: "comteco-logs"
+  required_acks: 1
+  compression: gzip
+
+logging.level: info
